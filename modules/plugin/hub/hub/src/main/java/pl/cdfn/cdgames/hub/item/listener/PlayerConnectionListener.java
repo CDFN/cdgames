@@ -8,13 +8,13 @@ import org.spongepowered.api.event.network.ServerSideConnectionEvent;
 import pl.cdfn.cdgames.hub.event.PlayerJoinSettingsEvent;
 import pl.cdfn.cdgames.hub.player.repository.HubPlayerRepository;
 
-public class PlayerJoinListener {
+public class PlayerConnectionListener {
 
   private final Logger logger;
   private final HubPlayerRepository hubPlayerRepository;
 
   @Inject
-  public PlayerJoinListener(Logger logger, @Named("nonpersistent") HubPlayerRepository hubPlayerRepository) {
+  public PlayerConnectionListener(Logger logger, @Named("nonpersistent") HubPlayerRepository hubPlayerRepository) {
     this.logger = logger;
     this.hubPlayerRepository = hubPlayerRepository;
   }
