@@ -6,4 +6,5 @@ import pl.cdfn.cdgames.hub.player.HubPlayer;
 
 public interface HubPlayerRepository {
   CompletableFuture<HubPlayer> getPlayer(UUID key);
+  void cleanup(UUID key);
 }

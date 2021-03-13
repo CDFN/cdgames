@@ -26,4 +26,9 @@ public class NonPersistentHubPlayerRepository implements HubPlayerRepository {
 
     return CompletableFuture.completedFuture(playerMap.get(uuid));
   }
+
+  @Override
+  public void cleanup(UUID key) {
+    playerMap.remove(key);
+  }
 }
