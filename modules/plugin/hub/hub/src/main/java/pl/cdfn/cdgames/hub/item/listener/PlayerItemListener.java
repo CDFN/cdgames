@@ -10,12 +10,12 @@ import org.spongepowered.api.event.filter.cause.First;
 import org.spongepowered.api.event.item.inventory.InteractItemEvent;
 import pl.cdfn.cdgames.hub.player.repository.HubPlayerRepository;
 
-public class PlayerItemUseListener {
+public class PlayerItemListener {
 
   private final HubPlayerRepository hubPlayerRepository;
 
   @Inject
-  public PlayerItemUseListener(@Named("nonpersistent") HubPlayerRepository hubPlayerRepository) {
+  public PlayerItemListener(@Named("nonpersistent") HubPlayerRepository hubPlayerRepository) {
     this.hubPlayerRepository = hubPlayerRepository;
   }
 
