@@ -1,0 +1,21 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '6.1.0' apply false
+    id 'org.spongepowered.gradle.plugin' version '1.0.2' apply false
+}
+
+repositories {
+    mavenCentral()
+}
+
+subprojects {
+    group 'pl.cdfn.cdgames'
+    version '1.0.0'
+
+    apply plugin: 'java'
+
+    compileJava {
+        sourceCompatibility = JavaVersion.VERSION_15
+        targetCompatibility = JavaVersion.VERSION_15
+    }
+
+}

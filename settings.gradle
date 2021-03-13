@@ -1,0 +1,11 @@
+rootProject.name = 'cdgames'
+
+def addModule(String name, String directory) {
+    include ":${name}"
+    project(":${name}").projectDir = file("${rootProject.projectDir}/${directory}")
+}
+
+addModule("messaging:api", "modules/messaging/api")
+addModule("messaging:redis", "modules/messaging/redis")
+addModule("plugin:api", "modules/plugin/api")
+addModule("plugin:hub:hub", "modules/plugin/hub/hub")

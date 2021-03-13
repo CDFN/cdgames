@@ -1,0 +1,12 @@
+apply plugin: 'java-library'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    api project(':messaging:api')
+
+    api 'io.lettuce:lettuce-core:6.0.2.RELEASE'
+    api 'org.slf4j:slf4j-api:1.7.30'
+}
