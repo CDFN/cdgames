@@ -15,8 +15,8 @@ import org.spongepowered.api.util.locale.Locales;
 import org.spongepowered.plugin.PluginContainer;
 import org.spongepowered.plugin.jvm.Plugin;
 import pl.cdfn.cdgames.hub.event.caller.PlayerJoinSettingsCaller;
-import pl.cdfn.cdgames.hub.item.listener.PlayerItemUseListener;
-import pl.cdfn.cdgames.hub.item.listener.PlayerJoinListener;
+import pl.cdfn.cdgames.hub.item.listener.PlayerItemListener;
+import pl.cdfn.cdgames.hub.item.listener.PlayerConnectionListener;
 import pl.cdfn.cdgames.hub.player.repository.module.HubPlayerRepositoryModule;
 import resourcebundle.UTF8Control;
 
@@ -57,10 +57,10 @@ public class HubPlugin {
     var playerJoinSettingsCaller = childInjector.getInstance(PlayerJoinSettingsCaller.class);
     eventManager.registerListeners(pluginContainer, playerJoinSettingsCaller);
 
-    var itemUseListener = childInjector.getInstance(PlayerItemUseListener.class);
+    var itemUseListener = childInjector.getInstance(PlayerItemListener.class);
     eventManager.registerListeners(pluginContainer, itemUseListener);
 
-    var serverSideJoinListener = childInjector.getInstance(PlayerJoinListener.class);
+    var serverSideJoinListener = childInjector.getInstance(PlayerConnectionListener.class);
     eventManager.registerListeners(pluginContainer, serverSideJoinListener);
   }
 }
