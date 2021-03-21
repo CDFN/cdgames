@@ -1,0 +1,45 @@
+import org.spongepowered.gradle.plugin.config.PluginLoaders
+import org.spongepowered.plugin.metadata.PluginDependency
+
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'org.spongepowered.gradle.plugin'
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "Sonatype OSS Snapshots"
+        url = "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+}
+
+dependencies {
+    compileOnly 'org.spongepowered:spongeapi:8.0.0-SNAPSHOT'
+    implementation 'commons-io:commons-io:2.6'
+}
+
+sponge {
+    apiVersion "8.0.0"
+    plugin("cdgames_skywars"){
+        loader PluginLoaders.JAVA_PLAIN
+        displayName "SkyWars plugin"
+        mainClass "pl.cdfn.cdgames.game.SkyWarsPlugin"
+        dependency("spongeapi") {
+            loadOrder PluginDependency.LoadOrder.AFTER
+            optional false
+        }
+    }
+
+}
+
+shadowJar {
+    def destination = System.getenv("OUT")
+    if (destination != null) {
+        it.destinationDirectory = new File(destination)
+    } else {
+        it.destinationDirectory = new File("${rootDir.path}/out")
+    }
+}
+
+jar {
+    dependsOn shadowJar
+}
