@@ -20,13 +20,13 @@ dependencies {
 sponge {
     apiVersion "8.0.0"
     plugin("cdgames_hub"){
-        loader(PluginLoaders.JAVA_PLAIN)
-        displayName("Hub Plugin")
-        mainClass("pl.cdfn.cdgames.hub.HubPlugin")
-        description("Hub plugin")
+        loader PluginLoaders.JAVA_PLAIN
+        displayName "Hub Plugin"
+        mainClass "pl.cdfn.cdgames.hub.HubPlugin"
+        description "Hub plugin"
         dependency("spongeapi") {
-            loadOrder(PluginDependency.LoadOrder.AFTER)
-            optional(false)
+            loadOrder PluginDependency.LoadOrder.AFTER
+            optional false
         }
     }
 
