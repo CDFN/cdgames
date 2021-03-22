@@ -19,11 +19,11 @@ public class PlayerJoinSettingsEvent extends AbstractEvent {
   }
 
   @Override
-  public Cause getCause() {
+  public Cause cause() {
     return this.cause;
   }
 
-  public ServerPlayer getPlayer() {
+  public ServerPlayer player() {
     return player;
   }
 }

@@ -21,21 +21,23 @@ public class PlayerConnectionListener {
 
   @Listener
   public void onPlayerJoin(PlayerJoinSettingsEvent event) {
-    hubPlayerRepository.getPlayer(event.getPlayer().getUniqueId()).thenAccept(hubPlayer -> {
+    hubPlayerRepository.getPlayer(event.player().uniqueId()).thenAccept(hubPlayer -> {
       var itemManager = hubPlayer.getItemManager();
 
-      event.getPlayer().getInventory().clear();
-      event.getPlayer().getInventory().getHotbar().setSelectedSlotIndex(4);
+      var inventory = event.player().inventory();
+      var hotbar = inventory.hotbar();
 
-      event.getPlayer().getInventory().getHotbar().set(5 - 1, itemManager.getGameSelector());
-      event.getPlayer().getInventory().getHotbar().set(9 - 1, itemManager.getPlayerHider());
+      inventory.clear();
+      hotbar.setSelectedSlotIndex(4);
+      hotbar.set(5 - 1, itemManager.getGameSelector());
+      hotbar.set(9 - 1, itemManager.getPlayerHider());
     });
 
   }
 
   @Listener
-  public void onPlayerLeave(ServerSideConnectionEvent.Disconnect event){
-    hubPlayerRepository.cleanup(event.getPlayer().getUniqueId());
+  public void onPlayerLeave(ServerSideConnectionEvent.Disconnect event) {
+    hubPlayerRepository.cleanup(event.player().uniqueId());
   }
 
 }

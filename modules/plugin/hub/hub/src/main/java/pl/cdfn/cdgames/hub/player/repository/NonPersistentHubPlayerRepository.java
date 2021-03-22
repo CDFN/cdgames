@@ -16,7 +16,7 @@ public class NonPersistentHubPlayerRepository implements HubPlayerRepository {
   @Override
   public CompletableFuture<HubPlayer> getPlayer(UUID uuid) {
     if (!playerMap.containsKey(uuid)) {
-      Sponge.getServer().getPlayer(uuid).ifPresentOrElse(serverPlayer -> {
+      Sponge.server().player(uuid).ifPresentOrElse(serverPlayer -> {
         var player = new HubPlayer(serverPlayer);
         playerMap.put(uuid, player);
       }, () -> {

@@ -37,22 +37,22 @@ public class PlayerJoinSettingsCaller {
 
   @Listener
   public void onJoin(ServerSideConnectionEvent.Join event) {
-    waitingList.add(event.getPlayer().getUniqueId());
+    waitingList.add(event.player().uniqueId());
   }
 
   @Listener
   public void onQuit(ServerSideConnectionEvent.Disconnect event) {
-    waitingList.remove(event.getPlayer().getUniqueId());
+    waitingList.remove(event.player().uniqueId());
   }
 
   @Listener
   public void onSettingsPacket(PlayerChangeClientSettingsEvent event) {
-    var player = event.getPlayer();
-    if (!waitingList.contains(player.getUniqueId())) {
+    var player = event.player();
+    if (!waitingList.contains(player.uniqueId())) {
       return;
     }
 
-    waitingList.remove(player.getUniqueId());
+    waitingList.remove(player.uniqueId());
     call(player);
   }
 
@@ -66,6 +66,6 @@ public class PlayerJoinSettingsCaller {
         .delay(Ticks.of(1))
         .build();
 
-    Sponge.getServer().getScheduler().submit(postTask);
+    Sponge.server().scheduler().submit(postTask);
   }
 }

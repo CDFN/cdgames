@@ -25,7 +25,7 @@ public class HubItemManager {
         .color(TextColor.color(0xFFDE2E))
         .decoration(TextDecoration.ITALIC, false);
 
-    var translatedItemName = GlobalTranslator.render(itemName, hubPlayer.getServerPlayer().getLocale());
+    var translatedItemName = GlobalTranslator.render(itemName, hubPlayer.getServerPlayer().locale());
 
     return ItemStack.builder()
         .itemType(ItemTypes.COMPASS)
@@ -42,7 +42,7 @@ public class HubItemManager {
         .color(TextColor.color(0xFFDE2E))
         .decoration(TextDecoration.ITALIC, false);
 
-    var translatedItemName = GlobalTranslator.render(itemName, hubPlayer.getServerPlayer().getLocale());
+    var translatedItemName = GlobalTranslator.render(itemName, hubPlayer.getServerPlayer().locale());
 
     return ItemStack.builder()
         .itemType(ItemTypes.REDSTONE)

@@ -21,9 +21,9 @@ public class PlayerItemListener {
 
   @Listener
   public void onUse(InteractItemEvent.Secondary event, @First Player player) {
-    var itemType = event.getItemStack().getType();
+    var itemType = event.itemStack().type();
 
-    hubPlayerRepository.getPlayer(player.getUniqueId()).thenAccept(hubPlayer -> {
+    hubPlayerRepository.getPlayer(player.uniqueId()).thenAccept(hubPlayer -> {
       var optionalStatefulItem = hubPlayer.getStatefulItems()
           .stream()
           .filter(statefulItem -> statefulItem.getItemType().equals(itemType))
@@ -34,22 +34,22 @@ public class PlayerItemListener {
       }
 
       var statefulItem = optionalStatefulItem.get();
-      var useResult = statefulItem.onUse(event.getItemStack());
+      var useResult = statefulItem.onUse(event.itemStack());
 
-      var optionalHandType = event.getCause().getContext().get(EventContextKeys.USED_HAND);
+      var optionalHandType = event.cause().context().get(EventContextKeys.USED_HAND);
       if (optionalHandType.isEmpty()) {
         return;
       }
 
       var handType = optionalHandType.get();
-      var inventory = player.getInventory();
+      var inventory = player.inventory();
 
       if (HandTypes.MAIN_HAND.get().equals(handType)) {
-        var selectedSlot = inventory.getHotbar().getSelectedSlotIndex();
+        var selectedSlot = inventory.hotbar().selectedSlotIndex();
         inventory.set(selectedSlot, useResult);
         return;
       }
-      inventory.getOffhand().set(useResult);
+      inventory.offhand().set(useResult);
 
     });
   }
